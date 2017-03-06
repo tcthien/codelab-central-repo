@@ -12,9 +12,9 @@
 - Checking out following guide to setup Vagrant effectively https://github.com/tcthien/vagrant-java-server
 
 ### Components
-- codelab-config-service
+- codelab-config-service: Spring Cloud Configuration Service running on port 20088
+- codelab-gateway-service: Central Gateway Service running on port 20080
 - codelab-registry-service
-- codelab-gateway-service
 - codelab-monitoring-service
 - codelab-auth-service
 - codelab-account-service
