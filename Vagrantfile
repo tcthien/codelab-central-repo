@@ -24,14 +24,13 @@ Vagrant.configure("2") do |config|
     config.vm.network "forwarded_port", guest: 8080, host: 8080
     config.vm.network "forwarded_port", guest: 50000, host: 50000
     
-    # Colab port
-    config.vm.network "forwarded_port", guest: 8888, host: 8888
-    config.vm.network "forwarded_port", guest: 8761, host: 8761
-    config.vm.network "forwarded_port", guest: 4000, host: 4000
-    config.vm.network "forwarded_port", guest: 4100, host: 4100
-    config.vm.network "forwarded_port", guest: 25000, host: 25000
-    config.vm.network "forwarded_port", guest: 26000, host: 26000
-     
+    # codelab port
+    for i in 20080..20088
+        config.vm.network :forwarded_port, guest: i, host: i
+    end
+    for i in 20182..20184
+        config.vm.network :forwarded_port, guest: i, host: i
+    end 
     
     config.vm.provider "virtualbox" do |vb|
         vb.memory = "4096"

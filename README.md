@@ -3,11 +3,12 @@
 
 
 ### Setup
-- Installing docker & docker compose
+- Checking out following guide to setup Vagrant effectively https://github.com/tcthien/vagrant-java-server
 - Adding following user & password to environment variable:
 ```
-    export CODELAB_USER=codelab
-    export CODELAB_PASS=codelab
+    #Add PASSWORD TO ENV
+    echo 'export CODELAB_USER="codelab"' >> ~/.bashrc
+    echo 'export CODELAB_PASS="codelab"' >> ~/.bashrc
 ```
 - Adding following entry to host file:
 ```
@@ -23,7 +24,6 @@
 <IP of your service>       codelab-article-mongodb
 <IP of your service>       codelab-account-mongodb
 ```
-- Checking out following guide to setup Vagrant effectively https://github.com/tcthien/vagrant-java-server
 
 ### Components
 - codelab-config-service: Spring Cloud Configuration Service running on port 20088
