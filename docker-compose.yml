@@ -29,6 +29,8 @@ services:
       CODELAB_USER: $CODELAB_USER
       CODELAB_PASS: $CODELAB_PASS
     build: codelab-gateway-service
+    depends_on:
+      - codelab-config-service
     ports:
       - 20080:20080
     restart: always
@@ -51,11 +53,42 @@ services:
         max-size: "10m"
         max-file: "10"
 
+  codelab-account-mongodb:
+      environment:
+        CODELAB_USER: $CODELAB_USER
+        CODELAB_PASS: $CODELAB_PASS
+        INIT_DUMP: data.js
+      build: codelab-account-service/mongodb
+      ports:
+        - 20182:27017
+      restart: always
+      logging:
+        options:
+          max-size: "10m"
+          max-file: "10"
+
+  codelab-article-mongodb:
+        environment:
+          CODELAB_USER: $CODELAB_USER
+          CODELAB_PASS: $CODELAB_PASS
+          INIT_DUMP: data.js
+        build: codelab-article-service/mongodb
+        ports:
+          - 20183:27017
+        restart: always
+        logging:
+          options:
+            max-size: "10m"
+            max-file: "10"
+
   codelab-auth-service:
     environment:
       CODELAB_USER: $CODELAB_USER
       CODELAB_PASS: $CODELAB_PASS
     build: codelab-auth-service
+    depends_on:
+      - codelab-config-service
+      - codelab-auth-mongodb
     ports:
       - 20084:20084
     restart: always
@@ -69,6 +102,9 @@ services:
       CODELAB_USER: $CODELAB_USER
       CODELAB_PASS: $CODELAB_PASS
     build: codelab-article-service
+    depends_on:
+      - codelab-config-service
+      - codelab-article-mongodb
     ports:
       - 20083:20083
     restart: always
@@ -82,6 +118,9 @@ services:
       CODELAB_USER: $CODELAB_USER
       CODELAB_PASS: $CODELAB_PASS
     build: codelab-account-service
+    depends_on:
+      - codelab-config-service
+      - codelab-account-mongodb
     ports:
       - 20082:20082
     restart: always

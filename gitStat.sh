@@ -12,5 +12,5 @@ do
    cd ../
    # or do whatever with individual element of the array
 done
-sleep 10
+#sleep 10
 # You can access them using echo "${arr[0]}", "${arr[1]}" also
