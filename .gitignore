@@ -9,7 +9,7 @@ codelab-article-service
 .project
 .settings
 .idea
-.iml
+*.iml
 
 # Eclipse Project ---------------------------------------------------------------------------------
 .metadata

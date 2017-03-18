@@ -58,10 +58,50 @@ Open source system for online training
 
 ### Components
 - codelab-config-service: Spring Cloud Configuration Service running on port 20088
-- codelab-gateway-service: Central Gateway Service running on port 20080
-- codelab-registry-service
-- codelab-monitoring-service
-- codelab-auth-service
-- codelab-account-service
-- codelab-article-service
+- codelab-gateway-service: Central Gateway Service running on port 20080. Instead of using separated service like: codelab-auth-service:20084, codelab-account-service:20082, we can use gateway: codelab-gateway-service:20080/auth/..., or codelab-gateway-service:20080/account/...
+- codelab-registry-service: Service registry running on port 20087
+- codelab-monitoring-service: Service monitor running on port 20086(turbine: 20085)
+- codelab-auth-service: Authentication service running on port 20084
+- codelab-account-service: User Account Management running on port 20082
+- codelab-article-service: tutorial service running on port 20083
 
+### REST Endpoints
+- UserController
+```
+    codelab-auth-service:20084/uaa/users/current
+        - Method: GET
+        - Authorization: Bearer <token>
+        - Description: returns current principle
+    
+    codelab-auth-service:20084/uaa/users
+        - Method: POST
+        - Authorize: hasScope('server')
+        - Description: create new user
+    
+    codelab-auth-service:20084/uaa/oauth/token?grant_type=password&username=thien&password=tcthien
+        - Method: POST
+        - Description: request new token
+```
+
+- AccountController
+```
+   codelab-account-service:20082/account/<account name>
+        - Method: GET
+        - Authorization: Bearer <token>
+        - Authorize: hasScope('server')
+        - Description: returns specific account
+    
+    codelab-account-service:20082/account/
+        - Method: POST
+        - Description: Create new account
+    
+    codelab-account-service:20082/account/current
+        - Method: GET
+        - Authorization: Bearer <token>
+        - Description: returns current account
+    
+    codelab-account-service:20082/account/current
+        - Method: PUT
+        - Authorization: Bearer <token>
+        - Description: modify current account
+```
