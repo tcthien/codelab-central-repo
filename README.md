@@ -57,13 +57,13 @@ Open source system for online training
 - Restart your shell and try again
 
 ### Components
-- codelab-config-service: Spring Cloud Configuration Service running on port 20088
-- codelab-gateway-service: Central Gateway Service running on port 20080. Instead of using separated service like: codelab-auth-service:20084, codelab-account-service:20082, we can use gateway: codelab-gateway-service:20080/auth/..., or codelab-gateway-service:20080/account/...
-- codelab-registry-service: Service registry running on port 20087
-- codelab-monitoring-service: Service monitor running on port 20086(turbine: 20085)
-- codelab-auth-service: Authentication service running on port 20084
-- codelab-account-service: User Account Management running on port 20082
-- codelab-article-service: tutorial service running on port 20083
+- _codelab-config-service_: Spring Cloud Configuration Service running on port 20088
+- _codelab-gateway-service_: Central Gateway Service running on port 20080. Instead of using separated service like: codelab-auth-service:20084, codelab-account-service:20082, we can use gateway: codelab-gateway-service:20080/auth/..., or codelab-gateway-service:20080/account/...
+- _codelab-registry-service_: Service registry running on port 20087
+- _codelab-monitoring-service_: Service monitor running on port 20086(turbine: 20085)
+- _codelab-auth-service_: Authentication service running on port 20084
+- _codelab-account-service_: User Account Management running on port 20082
+- _codelab-article-service_: tutorial service running on port 20083
 
 ### REST Endpoints
 - UserController
