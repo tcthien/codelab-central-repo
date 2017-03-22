@@ -6,23 +6,16 @@ Vagrant.configure("2") do |config|
     config.vm.synced_folder "", "/share/source"
 
     config.vm.network "private_network", ip: "192.168.100.100"
-    # MySQL Port
+    
+    
+    # DBL: MySQL Port, Cassandra Port
     config.vm.network "forwarded_port", guest: 3306, host: 3306
-    # Cassandra Port
     config.vm.network "forwarded_port", guest: 9042, host: 9042
-    # Gateway
+    
+    # HTTP: Common
     config.vm.network "forwarded_port", guest: 80, host: 80
-    # Eureka Dashboard
-    config.vm.network "forwarded_port", guest: 8761, host: 8761
-    # Hystrix Dashboard
-    config.vm.network "forwarded_port", guest: 9000, host: 9000
-    # Turbin Stream Source for Hystrix Dashboard
-    config.vm.network "forwarded_port", guest: 8989, host: 8989 
-    # RabbitMq
-    config.vm.network "forwarded_port", guest: 15672, host: 15672
-    # Jenkins
+    config.vm.network "forwarded_port", guest: 443, host: 443
     config.vm.network "forwarded_port", guest: 8080, host: 8080
-    config.vm.network "forwarded_port", guest: 50000, host: 50000
     
     # codelab port
     for i in 20080..20088
@@ -31,6 +24,13 @@ Vagrant.configure("2") do |config|
     for i in 20182..20184
         config.vm.network :forwarded_port, guest: i, host: i
     end 
+    
+    # CI Tools: Jenkins, SonarQube, Nexus, GitLab, SeleniumGrid
+    config.vm.network "forwarded_port", guest: 18080, host: 18080
+    config.vm.network "forwarded_port", guest: 19000, host: 19000
+    config.vm.network "forwarded_port", guest: 18081, host: 18081
+    config.vm.network "forwarded_port", guest: 10080, host: 10080
+    config.vm.network "forwarded_port", guest: 4444, host: 4444
     
     config.vm.provider "virtualbox" do |vb|
         vb.memory = "4096"

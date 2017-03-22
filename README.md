@@ -10,7 +10,7 @@ Open source system for online training
     echo 'export CODELAB_USER="codelab"' >> ~/.bashrc
     echo 'export CODELAB_PASS="codelab"' >> ~/.bashrc
 ```
-- Adding following entry to host file:
+- Adding following entry to host file (only apply this for docker run on window):
 ```
 #Define for software service
 <IP of your service>       codelab
@@ -49,7 +49,7 @@ Open source system for online training
 ```
     # Add the docker group if it doesn't already exist:
     sudo groupadd docker
-    # Add the connected user "${USER}" to the docker group. Change the user name to match your preferred user:
+    # Add the connected user "${USER}" to the docker group. Change the user userName to match your preferred user:
     sudo gpasswd -a ${USER} docker
     # Restart the Docker daemon:
     sudo service docker restart
@@ -73,10 +73,21 @@ Open source system for online training
         - Authorization: Bearer <token>
         - Description: returns current principle
     
+    codelab-auth-service:20084/uaa/users/pass
+        - Method: PUT
+        - Authorization: Bearer <token>
+        - Params: username, oldPass, newPass
+        - Description: update user's password
+    
     codelab-auth-service:20084/uaa/users
         - Method: POST
         - Authorize: hasScope('server')
         - Description: create new user
+    
+    codelab-auth-service:20084/uaa/users
+        - Method: PUT
+        - Authorize: hasScope('server')
+        - Description: update user information
     
     codelab-auth-service:20084/uaa/oauth/token?grant_type=password&username=thien&password=tcthien
         - Method: POST
@@ -85,7 +96,7 @@ Open source system for online training
 
 - AccountController
 ```
-   codelab-account-service:20082/account/<account name>
+   codelab-account-service:20082/account/<account userName>
         - Method: GET
         - Authorization: Bearer <token>
         - Authorize: hasScope('server')
