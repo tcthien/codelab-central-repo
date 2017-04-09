@@ -1,16 +1,5 @@
 version: '2'
 services:
-  rabbitmq:
-    image: rabbitmq:3-management
-    restart: always
-    ports:
-      - 15672:15672
-      - 5672:5672
-    logging:
-      options:
-        max-size: "10m"
-        max-file: "10"
-
   codelab-config-service:
     environment:
       CODELAB_USER: $CODELAB_USER
@@ -32,6 +21,8 @@ services:
     ports:
       - 20087:20087
     restart: always
+    depends_on:
+      - codelab-config-service
     logging:
       options:
         max-size: "10m"
@@ -45,6 +36,9 @@ services:
     ports:
       - 20080:20080
     restart: always
+    depends_on:
+      - codelab-config-service
+      - codelab-registry-service
     logging:
       options:
         max-size: "10m"
@@ -59,6 +53,9 @@ services:
       - 20086:20086
       - 20085:20085
     restart: always
+    depends_on:
+      - codelab-config-service
+      - codelab-registry-service
     logging:
       options:
         max-size: "10m"
@@ -85,6 +82,10 @@ services:
     ports:
       - 20084:20084
     restart: always
+    depends_on:
+      - codelab-config-service
+      - codelab-registry-service
+      - codelab-auth-mongodb
     logging:
       options:
         max-size: "10m"
@@ -111,6 +112,10 @@ services:
     ports:
       - 20083:20083
     restart: always
+    depends_on:
+      - codelab-config-service
+      - codelab-registry-service
+      - codelab-article-mongodb
     logging:
       options:
         max-size: "10m"
@@ -137,6 +142,10 @@ services:
     ports:
       - 20082:20082
     restart: always
+    depends_on:
+      - codelab-config-service
+      - codelab-registry-service
+      - codelab-account-mongodb
     logging:
       options:
         max-size: "10m"

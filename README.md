@@ -19,7 +19,6 @@ Open source system for online training
 <IP of your service>       codelab-registry-service
 <IP of your service>       codelab-auth-service
 <IP of your service>       codelab-gateway-service
-<IP of your service>       rabbitmq
 <IP of your service>       codelab-auth-mongodb
 <IP of your service>       codelab-article-mongodb
 <IP of your service>       codelab-account-mongodb
