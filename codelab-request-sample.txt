@@ -1,0 +1,154 @@
+﻿Request samples:
+    - Request token:
+        + Request
+            POST: http://192.168.72.24:20080/uaa/oauth/token?grant_type=password&username=tcthien&password=tcthien
+        + Response:
+            {
+              "access_token": "ecc01574-5a71-47aa-86bc-dba2fb0f959a",
+              "token_type": "bearer",
+              "refresh_token": "3edd0e4c-a5af-4560-a4fa-795547ed1a28",
+              "expires_in": 42441,
+              "scope": "ui"
+            }
+    
+    - Request current user info:
+        + Request
+            GET: http://codelab:20080/uaa/users/current
+            Header
+                Authorization   Bearer <requested token in above>
+        + Response
+            {
+              ...,
+              "principal": {
+                "username": "tcthien",
+                "password": "$2a$10$vPBKiz7Jo9n/VRDr0ZaHTe.y6CaxTlhLTTxhIMYLXSSjnuj8978Ra",
+                "fullName": "Thien Tran",
+                "email": "thientran1986@gmail.com",
+                "enabled": true,
+                "accountNonExpired": true,
+                "accountNonLocked": true,
+                "credentialsNonExpired": true,
+                "authorities": null
+              },...
+            }
+            
+    - Register new account: (default password is 123456)
+        + Request
+            POST: http://codelab:20080/account/
+            Body:
+                {
+                  "userName": "thien",
+                  "fullName": "Thien Tran",
+                  "email" : "tcthien@tma.com.vn",
+                  "project" : "AxS"
+                }
+        + Response
+            {
+              "userName": "thien",
+              "fullName": "Thien Tran",
+              "email": "tcthien@tma.com.vn",
+              "project": null,
+              "lastSeen": null,
+              "note": null
+            }
+
+    - Submit a new article:
+        + Request
+            POST: http://codelab:20080/article/tutorial/
+            Header:
+                Authorization Bearer <token key>
+            Body:
+                {
+                  "title": "Java Basic",
+                  "alias": "java-basic",
+                  "category": "JAVA",
+                  "steps": [
+                    {
+                    	"stepId": 1,
+                    	"title": "Setup Environment",
+                    	"description": "This step guides how to setup environment",
+                    	"length": 30
+                    },
+                    {
+                    	"stepId": 2,
+                    	"title": "What is Java",
+                    	"description": "This introduce a litle bit about Java. Why Java is so popular today.",
+                    	"length": 10
+                    },
+                    {
+                    	"stepId": 3,
+                    	"title": "What is JDK & JRE",
+                    	"description": "This introduce a litle bit about Java. Why Java is so popular today.",
+                    	"length": 10
+                    }
+                  ]
+                }
+        + Response: "success"
+
+    - Get article:
+        + Request
+            GET: http://codelab:20080/article/tutorial/java-basic
+            Header:
+                Authorization Bearer <token key>
+        + Response
+            {
+              "title": "Java Basic",
+              "alias": "java-basic",
+              "category": "JAVA",
+              "steps": [
+                {
+                  "stepId": 0,
+                  "title": "Setup Environment",
+                  "description": "This step guides how to setup environment",
+                  "length": 30
+                },
+                {
+                  "stepId": 1,
+                  "title": "What is Java",
+                  "description": "This introduce a litle bit about Java. Why Java is so popular today.",
+                  "length": 10
+                },
+                {
+                  "stepId": 2,
+                  "title": "What is JDK & JRE",
+                  "description": "This introduce a litle bit about Java. Why Java is so popular today.",
+                  "length": 10
+                }
+              ],
+              "author": "thien"
+            }
+
+    - Get tutorial step:
+        + Request
+            GET: http://codelab:20080/article/step/java-basic/0
+            Header:
+                Authorization Bearer <token key>
+        + Rseponse
+            {
+              "stepId": 0,
+              "title": "Setup Environment",
+              "description": "This step guides how to setup environment",
+              "length": 30
+            }
+
+    - Update tutorial step
+        + Request
+            PUT: http://codelab:20080/article/step/java-basic/0
+            Header:
+                Authorization Bearer <token key>
+                Content-Type         application/json
+            Body:
+                {
+                  "stepId": 0,
+                  "title": "Setup Environment 123",
+                  "description": "This step guides how to setup environment 123",
+                  "length": 3123
+                }
+        + Response
+            {
+              "stepId": 0,
+              "title": "Setup Environment 123",
+              "description": "This step guides how to setup environment 123",
+              "length": 3123
+            }
+
