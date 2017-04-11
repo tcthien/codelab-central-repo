@@ -14,11 +14,11 @@ function buildMongoDb()
     echo "    DB Name: ${dbService}"
     echo "    Registry: ${registryUrl}"
 
-    cd $service
+    cd $service/mongodb
     docker build -t $dbService .
     docker tag $dbService $registryUrl/codelab/$dbService
     docker login $registryUrl -u $registryUser -p $registryPass && docker push $registryUrl/codelab/$dbService
-    cd ../
+    cd ../../
 }
 
 ## declare an array variable
