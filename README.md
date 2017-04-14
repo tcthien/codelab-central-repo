@@ -22,6 +22,8 @@ Open source system for online training
 <IP of your service>       codelab-auth-mongodb
 <IP of your service>       codelab-article-mongodb
 <IP of your service>       codelab-account-mongodb
+<IP of your service>       codelab-ssh-mongodb
+<IP of your service>       codelab-ssh-service
 ```
 
 ### Build the code
@@ -63,6 +65,7 @@ Open source system for online training
 - _codelab-auth-service_: Authentication service running on port 20084
 - _codelab-account-service_: User Account Management running on port 20082
 - _codelab-article-service_: tutorial service running on port 20083
+- _codelab-ssh-service_: tutorial service running on port 20081
 
 ### REST Endpoints
 - UserController

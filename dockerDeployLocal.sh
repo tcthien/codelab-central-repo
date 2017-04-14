@@ -22,7 +22,7 @@ function buildMongoDb()
 }
 
 ## declare an array variable
-declare -a arr=("codelab-config-service" "codelab-registry-service" "codelab-gateway-service" "codelab-monitoring-service" "codelab-auth-service" "codelab-account-service" "codelab-article-service")
+declare -a arr=("codelab-config-service" "codelab-registry-service" "codelab-gateway-service" "codelab-monitoring-service" "codelab-auth-service" "codelab-account-service" "codelab-article-service" "codelab-ssh-service")
 
 ## now loop through the above array
 for i in "${arr[@]}"
@@ -41,5 +41,6 @@ done
 buildMongoDb 'codelab-auth-service' 'codelab-auth-mongodb'
 buildMongoDb 'codelab-account-service' 'codelab-account-mongodb'
 buildMongoDb 'codelab-article-service' 'codelab-article-mongodb'
+buildMongoDb 'codelab-ssh-service' 'codelab-ssh-mongodb'
 
 

@@ -5,7 +5,7 @@ registryUser=admin
 registryPass=admin123
 
 ## declare an array variable
-declare -a arr=("codelab-auth-mongodb" "codelab-account-mongodb" "codelab-article-mongodb" "codelab-config-service" "codelab-registry-service" "codelab-gateway-service" "codelab-monitoring-service" "codelab-auth-service" "codelab-account-service" "codelab-article-service")
+declare -a arr=("codelab-auth-mongodb" "codelab-account-mongodb" "codelab-article-mongodb" "codelab-ssh-mongodb" "codelab-config-service" "codelab-registry-service" "codelab-gateway-service" "codelab-monitoring-service" "codelab-auth-service" "codelab-account-service" "codelab-article-service" "codelab-ssh-service")
 
 ## now loop through the above array
 for i in "${arr[@]}"
